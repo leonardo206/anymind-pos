@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="leonardoproietti">
+        <sqlFile path="db/changelog/sql/281124_01_create_payment_method_table.sql"/>
+    </changeSet>
+
+    <changeSet id="2" author="leonardoproietti">
+        <sqlFile path="db/changelog/sql/281124_02_create_payment_table.sql"/>
+    </changeSet>
+
+</databaseChangeLog>
