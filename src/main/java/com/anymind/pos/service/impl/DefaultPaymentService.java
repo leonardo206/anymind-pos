@@ -55,7 +55,7 @@ public class DefaultPaymentService implements PaymentService {
     }
 
     @Override
-    public SalesResponseDTO getSalesWithinDateRange(SalesReportRequestDTO request) {
+    public SalesResponseDTO generateSalesReportWithinDateRange(SalesReportRequestDTO request) {
         List<SalesRecordResponseDTO> results = paymentRepository.findHourlySales(request.startDateTime(),request.endDateTime());
         return new SalesResponseDTO(results);
     }

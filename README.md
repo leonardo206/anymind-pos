@@ -53,15 +53,22 @@ classDiagram
     class VisaPaymentStrategy {
         +getPaymentMethod() : PaymentMethodType
     }
+    
+    class BankTransferPaymentStrategy {
+        +processPayment(request: PaymentRequestDTO) : PaymentResponseDTO
+        +validateBankAccountNumber(additionalItemDTO: AdditionalItemDTO)
+        +getPaymentMethod() : PaymentMethodType
+    }
 
     PaymentStrategy <|-- BasePaymentStrategy
     BasePaymentStrategy <|-- CreditCardPaymentStrategy
     CreditCardPaymentStrategy <|-- VisaPaymentStrategy
+    BasePaymentStrategy <|-- BankTransferPaymentStrategy
 ```
 
 ## API Endpoints
 
-### `POST /payment`
+### `POST api/payments`
 Executes the payment and returns the final price and points.
 
 #### Request:
@@ -86,7 +93,7 @@ Executes the payment and returns the final price and points.
 }
 ```
 
-### `POST /sales`
+### `POST api/payments/sales`
 Fetches sales data within a given date range.
 
 #### Request:

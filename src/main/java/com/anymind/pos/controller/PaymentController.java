@@ -25,9 +25,9 @@ public class PaymentController {
                 .thenApply(ResponseEntity::ok);
     }
 
-    @GetMapping("/sales")
-    public SalesResponseDTO getSales(@RequestBody @Valid SalesReportRequestDTO request) {
-        return paymentService.getSalesWithinDateRange(request);
+    @PostMapping("/sales")
+    public SalesResponseDTO generateSalesReport(@RequestBody @Valid SalesReportRequestDTO request) {
+        return paymentService.generateSalesReportWithinDateRange(request);
     }
 
 }

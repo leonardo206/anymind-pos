@@ -117,7 +117,7 @@ class DefaultPaymentServiceTest {
 
         when(paymentRepository.findHourlySales(startDateTime, endDateTime)).thenReturn(mockSales);
 
-        SalesResponseDTO response = paymentService.getSalesWithinDateRange(request);
+        SalesResponseDTO response = paymentService.generateSalesReportWithinDateRange(request);
 
         assertNotNull(response);
         assertEquals(2, response.sales().size());
@@ -137,7 +137,7 @@ class DefaultPaymentServiceTest {
         List<SalesRecordResponseDTO> mockSales = List.of();
         when(paymentRepository.findHourlySales(startDateTime, endDateTime)).thenReturn(mockSales);
 
-        SalesResponseDTO response = paymentService.getSalesWithinDateRange(request);
+        SalesResponseDTO response = paymentService.generateSalesReportWithinDateRange(request);
 
         assertNotNull(response);
         assertTrue(response.sales().isEmpty());
@@ -150,7 +150,7 @@ class DefaultPaymentServiceTest {
         LocalDateTime invalidEndDateTime = LocalDateTime.of(2024, 11, 1, 23, 59);
         SalesReportRequestDTO invalidRequest = new SalesReportRequestDTO(invalidStartDateTime, invalidEndDateTime);
 
-        SalesResponseDTO response = paymentService.getSalesWithinDateRange(invalidRequest);
+        SalesResponseDTO response = paymentService.generateSalesReportWithinDateRange(invalidRequest);
 
         assertNotNull(response);
         assertTrue(response.sales().isEmpty());
@@ -165,7 +165,7 @@ class DefaultPaymentServiceTest {
         when(paymentRepository.findHourlySales(startDateTime, endDateTime)).thenThrow(new RuntimeException("Database error"));
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            paymentService.getSalesWithinDateRange(request);
+            paymentService.generateSalesReportWithinDateRange(request);
         });
 
         assertEquals("Database error", thrown.getMessage());

@@ -11,5 +11,5 @@ public interface PaymentService {
 
     CompletableFuture<PaymentResponseDTO> executePayment(PaymentRequestDTO request);
 
-    SalesResponseDTO getSalesWithinDateRange(SalesReportRequestDTO salesReportRequestDTO);
+    SalesResponseDTO generateSalesReportWithinDateRange(SalesReportRequestDTO salesReportRequestDTO);
 }
